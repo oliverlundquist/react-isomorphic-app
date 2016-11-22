@@ -3,7 +3,9 @@ import React from 'react'
 import { createStore } from 'redux'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Router, Route, browserHistory } from 'react-router'
 import App from '../common/App'
+import Users from '../common/Users'
 
 function counterReducer(state = { count: 0 }, action) {
 	const count = state.count
@@ -21,7 +23,10 @@ const rootElement = document.getElementById('app')
 
 render(
 	<Provider store={store}>
-		<App/>
+		<Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)} >
+			<Route path='/' component={App} />
+			<Route path='/users' component={Users} />
+		</Router>
 	</Provider>,
 	rootElement
 )

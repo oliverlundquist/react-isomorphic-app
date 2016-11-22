@@ -6,9 +6,11 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { match, RouterContext, Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 // app
 import App from '../common/App'
+import Users from '../common/Users'
 
 app.use((req, res, next) => {
 	if (req.url === '/favicon.ico') {
@@ -32,16 +34,32 @@ function counterReducer(state = { count: 0 }, action) {
 	}
 }
 
+const routes = <Router>
+				<Route path='/' component={App} />
+				<Route path='/users' component={Users} />
+			</Router>
+
 function handleRender(req, res) {
-	// const preloadedState = { count: 5 }
-	const store = createStore(counterReducer)
-	const html = renderToString(
-		<Provider store={store}>
-			<App />
-		</Provider>
-	)
-	const finalState = store.getState()
-	res.send(renderFullPage(html, finalState))
+	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+		if (error) {
+			res.status(500).send(error.message)
+		} else if (redirectLocation) {
+			res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+		} else if (renderProps) {
+			const store = createStore(counterReducer)
+			const html = renderToString(
+				<Provider store={store}>
+					<RouterContext {...renderProps}>
+						<App />
+					</RouterContext>
+				</Provider>
+			)
+			const finalState = store.getState()
+			res.status(200).send(renderFullPage(html, finalState))
+		} else {
+			res.status(404).send('Not found')
+		}
+	})
 }
 
 function renderFullPage(html, preloadedState) {
