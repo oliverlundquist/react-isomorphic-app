@@ -6,6 +6,7 @@ import routes from '../app/routes'
 import { configureStore } from '../app/store'
 import { Provider } from 'react-redux'
 
+const qs = require('qs');
 const express = require('express')
 const app = express()
 const initialState = {
@@ -19,6 +20,17 @@ const initialState = {
 	// 	email: null
 	// }
 };
+
+app.get('/callback', function (req, res) {
+	const parameters    = qs.parse(req.query) // never trust incoming parameters, parseInt them or something
+	const grant_type    = 'authorization_code'
+	const client_id     = process.env.CLIENT_ID
+	const client_secret = process.env.CLIENT_SECRET
+	const redirect_uri  = process.env.REDIRECT_URI || 'http://localhost/callback'
+	const code          = parameters.code
+
+	res.send('make a post request, store token in localStorage and redirect to index')
+})
 
 app.use(FaviconMiddleware)
 app.use(express.static('public'))
