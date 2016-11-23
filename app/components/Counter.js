@@ -1,7 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Components from '../components'
 import * as Actions from '../actions'
 
 class Counter extends React.Component {

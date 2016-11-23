@@ -4,7 +4,6 @@ import { match, RouterContext } from 'react-router'
 import FaviconMiddleware from './middleware/FaviconMiddleware'
 import routes from '../app/routes'
 import { configureStore } from '../app/store'
-import { NotFoundPage } from '../app/containers'
 import { Provider } from 'react-redux'
 
 const express = require('express')

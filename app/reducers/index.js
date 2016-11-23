@@ -1,7 +1,7 @@
-import countReducer from './CountReducer'
+import { CountReducer } from './CountReducer'
 
 const reducers = {
-	counter: countReducer
+	counter: CountReducer
 }
 
 export default reducers;

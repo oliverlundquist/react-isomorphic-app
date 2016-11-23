@@ -1,4 +1,4 @@
-const countReducer = (state = { count: 0 }, action) => {
+export const CountReducer = (state = { count: 0 }, action) => {
 	const count = state.count
 	switch (action.type) {
 	case 'increase':
@@ -7,5 +7,3 @@ const countReducer = (state = { count: 0 }, action) => {
 		return state
 	}
 }
-
-export default countReducer;

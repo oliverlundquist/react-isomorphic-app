@@ -1,7 +1,5 @@
 import React from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
-import store from './store';
-import { Provider } from 'react-redux'
+import { Route, IndexRoute } from 'react-router'
 import { Layout, IndexPage, Users, NotFoundPage } from '../app/containers'
 
 const routes = (

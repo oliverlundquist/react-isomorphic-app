@@ -1,22 +1,22 @@
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
 
 export const increment = () => ({
-  // type: INCREMENT_COUNTER
-  type: 'increase'
+	// type: INCREMENT_COUNTER
+	type: 'increase'
 })
 
 export const incrementIfOdd = () => (dispatch, getState) => {
-  const { counter } = getState()
+	const { counter } = getState()
 
-  if (counter % 2 === 0) {
-    return
-  }
+	if (counter % 2 === 0) {
+		return
+	}
 
-  dispatch(increment())
+	dispatch(increment())
 }
 
 export const incrementAsync = (delay = 1000) => dispatch => {
-  setTimeout(() => {
-    dispatch(increment())
-  }, delay)
+	setTimeout(() => {
+		dispatch(increment())
+	}, delay)
 }
