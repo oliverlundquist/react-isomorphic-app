@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 
 const qs = require('qs');
 const express = require('express')
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session);
 const app = express()
 const initialState = {
 	counter: { count: 5 }
@@ -23,6 +25,15 @@ const initialState = {
 };
 
 // expressjs middlewares
+app.use(session({
+	// secret: 'keyboard cat',
+	secret: 'keyboard catz',
+	// resave: false,
+	// saveUninitialized: false,
+	store: new RedisStore({ host: '0.0.0.0' })
+	// saveUninitialized: true,
+	// cookie: { secure: true, maxAge: 30 * 60 * 1000 }
+}))
 app.use(require('response-time')());
 
 // helmet middlewares / security
@@ -31,6 +42,20 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
 app.disable('x-powered-by');
+
+app.get('/session', function (req, res, next) {
+	var sess = req.session
+	if (sess.views) {
+		sess.views++
+		res.setHeader('Content-Type', 'text/html')
+		res.write('<p>views: ' + sess.views + '</p>')
+		res.write('<p>expires in: ' + (sess.cookie.maxAge / 1000) + 's</p>')
+		res.end()
+	} else {
+		sess.views = 1
+		res.end('welcome to the session demo. refresh!')
+	}
+})
 
 app.get('/callback', function (req, res) {
 	const parameters    = qs.parse(req.query) // never trust incoming parameters, parseInt them or something
