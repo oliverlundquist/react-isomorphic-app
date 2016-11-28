@@ -4,11 +4,12 @@
   "description": "Simple ReactJS Isomorphic App",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently 'npm run webpack' 'npm run nodemon' 'npm run test'",
-    "webpack": "webpack --colors --watch' 'remotedev --hostname=localhost --port=3001",
+    "start": "concurrently 'npm run webpack' 'npm run remotedev' 'npm run nodemon' 'npm run test'",
+    "webpack": "webpack --colors --watch",
+    "remotedev": "remotedev --hostname=localhost --port=3001",
     "nodemon": "nodemon --watch public/scripts --watch bootstrap bootstrap/loader.js",
     "test": "NODE_ENV=testing jest --watch --colors",
-    "screenshots": "NODE_ENV=testing jest --updateSnapshot --colors"
+    "snapshots": "NODE_ENV=testing jest --updateSnapshot --colors"
   },
   "author": "Oliver Lundquist <mail@oliverlundquist.com>",
   "license": "ISC",
@@ -16,13 +17,15 @@
     "babel-register": "^6.18.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "helmet": "^3.1.0",
     "qs": "^6.3.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "response-time": "^2.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

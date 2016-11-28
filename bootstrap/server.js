@@ -1,4 +1,5 @@
 import React from 'react'
+import helmet from 'helmet';
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import FaviconMiddleware from './middleware/FaviconMiddleware'
@@ -20,6 +21,16 @@ const initialState = {
 	// 	email: null
 	// }
 };
+
+// expressjs middlewares
+app.use(require('response-time')());
+
+// helmet middlewares / security
+app.use(helmet.frameguard());
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet.ieNoOpen());
+app.disable('x-powered-by');
 
 app.get('/callback', function (req, res) {
 	const parameters    = qs.parse(req.query) // never trust incoming parameters, parseInt them or something
