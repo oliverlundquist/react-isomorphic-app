@@ -1,0 +1,45 @@
+exports[`test Users page with child components 1`] = `
+<div>
+  <h1>
+    Users Page
+  </h1>
+  <div>
+    State inside the Users Container: 
+    5
+  </div>
+  <hr />
+  <div>
+    Counter Component:
+  </div>
+  <div>
+    5
+    <button
+      onClick={[Function]}>
+      +
+    </button>
+  </div>
+</div>
+`;
+
+exports[`test Users page with child components 2`] = `
+<div>
+  <h1>
+    Users Page
+  </h1>
+  <div>
+    State inside the Users Container: 
+    7
+  </div>
+  <hr />
+  <div>
+    Counter Component:
+  </div>
+  <div>
+    7
+    <button
+      onClick={[Function]}>
+      +
+    </button>
+  </div>
+</div>
+`;

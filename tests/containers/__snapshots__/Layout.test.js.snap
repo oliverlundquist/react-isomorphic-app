@@ -1,0 +1,83 @@
+exports[`test Layout with childview 1`] = `
+<div
+  className="app-container">
+  <header>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Home
+    </a>
+    <span
+      style={
+        Object {
+          "margin": "0 5px",
+        }
+      }>
+      |
+    </span>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Users
+    </a>
+  </header>
+  <div
+    className="app-content">
+    <div>
+      <h1>
+        Index Page
+      </h1>
+    </div>
+  </div>
+  <footer
+    style={
+      Object {
+        "borderTop": "1px solid #000",
+        "marginTop": "15px",
+      }
+    }>
+    <p>
+      This is where the footer goes.
+    </p>
+  </footer>
+</div>
+`;
+
+exports[`test Layout without childview 1`] = `
+<div
+  className="app-container">
+  <header>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Home
+    </a>
+    <span
+      style={
+        Object {
+          "margin": "0 5px",
+        }
+      }>
+      |
+    </span>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Users
+    </a>
+  </header>
+  <div
+    className="app-content" />
+  <footer
+    style={
+      Object {
+        "borderTop": "1px solid #000",
+        "marginTop": "15px",
+      }
+    }>
+    <p>
+      This is where the footer goes.
+    </p>
+  </footer>
+</div>
+`;

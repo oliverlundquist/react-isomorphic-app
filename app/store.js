@@ -9,8 +9,8 @@ import * as reducers from './reducers'
 
 export const configureStore = (initialState) => {
 	// TODO: move logic to external module and refine validation logic
-	const environment = process.env.APP_ENV || 'development'
-	const isClient = () => typeof window !== 'undefined'
+	const environment = process.env.NODE_ENV || 'development'
+	const isClient = () => typeof window !== 'undefined' && environment !== 'testing'
 	const isServer = () => ! isClient()
 
 	const enhancer = (environment === 'development' && isClient() === true)

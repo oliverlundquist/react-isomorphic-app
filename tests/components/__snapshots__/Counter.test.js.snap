@@ -1,0 +1,19 @@
+exports[`test Counter should increment when incrementing 1`] = `
+<div>
+  5
+  <button
+    onClick={[Function]}>
+    +
+  </button>
+</div>
+`;
+
+exports[`test Counter should increment when incrementing 2`] = `
+<div>
+  7
+  <button
+    onClick={[Function]}>
+    +
+  </button>
+</div>
+`;
