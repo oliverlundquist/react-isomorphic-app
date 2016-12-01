@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Components from '../components'
+import { Counter } from '../components'
 import * as Actions from '../actions'
 
 class Users extends React.Component {
@@ -12,7 +12,8 @@ class Users extends React.Component {
 				<div>State inside the Users Container: {this.props.count}</div>
 				<hr />
 				<div>Counter Component:</div>
-				<Components.Counter />
+				<Counter type="success" />
+				<Counter />
 			</div>
 		);
 	}

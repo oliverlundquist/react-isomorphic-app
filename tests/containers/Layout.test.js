@@ -3,14 +3,17 @@ import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 import { Layout, IndexPage } from '../../app/containers';
 import { configureStore } from '../../app/store'
+import { IntlProvider } from 'react-intl'
 
 test('Layout with childview', () => {
 	const store = configureStore({ counter: { count: 5 } })
 	const component = renderer.create(
 		<Provider store={store}>
-			<Layout>
-				<IndexPage />
-			</Layout>
+			<IntlProvider locale="en">
+				<Layout>
+					<IndexPage />
+				</Layout>
+			</IntlProvider>
 		</Provider>
 	);
 

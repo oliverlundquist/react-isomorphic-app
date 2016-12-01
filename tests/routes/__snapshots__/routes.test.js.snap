@@ -1,6 +1,14 @@
 exports[`test Index route 1`] = `
 <div
   className="app-container">
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "body{margin: 0;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;}html{background: #eee;
+      font-size: 100%;}@media (min-width: 550px){html{font-size: 120%;}}@media (min-width: 1200px){html{font-size: 140%;}}h1, h2, h3{font-weight: bold;}",
+      }
+    } />
   <header>
     <a
       href="#/"
@@ -22,13 +30,46 @@ exports[`test Index route 1`] = `
       style={Object {}}>
       Users
     </a>
+    <span
+      style={
+        Object {
+          "margin": "0 5px",
+        }
+      }>
+      |
+    </span>
+    <a
+      href="#/products"
+      onClick={[Function]}
+      style={Object {}}>
+      Products
+    </a>
+    <a
+      href="/products">
+      Products (direct linkz)
+    </a>
   </header>
   <div
     className="app-content">
     <div>
+      <span>
+        test1
+      </span>
       <h1>
         Index Page
       </h1>
+      <a
+        href="http://passport.dev:8000/oauth/authorize?client_id=7&redirect_uri=http://consumer.dev:8010/callback&response_type=code&scope=read:products read:categories">
+        <img
+          alt="Login with Mystore.no"
+          src="https://s3-eu-west-1.amazonaws.com/mystore-api-auth-app/assets/mystore-api-login-btn.jpg"
+          style={
+            Object {
+              "height": "auto",
+              "width": 360,
+            }
+          } />
+      </a>
     </div>
   </div>
   <footer
@@ -48,6 +89,14 @@ exports[`test Index route 1`] = `
 exports[`test NotFound route 1`] = `
 <div
   className="app-container">
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "body{margin: 0;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;}html{background: #eee;
+      font-size: 100%;}@media (min-width: 550px){html{font-size: 120%;}}@media (min-width: 1200px){html{font-size: 140%;}}h1, h2, h3{font-weight: bold;}",
+      }
+    } />
   <header>
     <a
       href="#/"
@@ -69,25 +118,85 @@ exports[`test NotFound route 1`] = `
       style={Object {}}>
       Users
     </a>
+    <span
+      style={
+        Object {
+          "margin": "0 5px",
+        }
+      }>
+      |
+    </span>
+    <a
+      href="#/products"
+      onClick={[Function]}
+      style={Object {}}>
+      Products
+    </a>
+    <a
+      href="/products">
+      Products (direct linkz)
+    </a>
   </header>
   <div
     className="app-content">
-    <div
-      className="not-found">
+    <div>
       <h1>
-        404
+        Users Page
       </h1>
-      <h2>
-        Page not found!
-      </h2>
-      <p>
-        <a
-          href="#/"
+      <div>
+        State inside the Users Container: 
+        5
+      </div>
+      <hr />
+      <div>
+        Counter Component:
+      </div>
+      <div
+        data-radium={true}>
+        5
+        <button
+          data-radium={true}
           onClick={[Function]}
-          style={Object {}}>
-          Go back to the main page
-        </a>
-      </p>
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#27AE60",
+              "borderRadius": "3px",
+              "color": "white",
+              "fontFamily": "\'Helvetica Neue\', sans-serif",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }>
+          +
+        </button>
+      </div>
+      <div
+        data-radium={true}>
+        5
+        <button
+          data-radium={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#0074D9",
+              "borderRadius": "3px",
+              "color": "white",
+              "fontFamily": "\'Helvetica Neue\', sans-serif",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }>
+          +
+        </button>
+      </div>
     </div>
   </div>
   <footer
@@ -107,6 +216,14 @@ exports[`test NotFound route 1`] = `
 exports[`test Users route 1`] = `
 <div
   className="app-container">
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "body{margin: 0;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;}html{background: #eee;
+      font-size: 100%;}@media (min-width: 550px){html{font-size: 120%;}}@media (min-width: 1200px){html{font-size: 140%;}}h1, h2, h3{font-weight: bold;}",
+      }
+    } />
   <header>
     <a
       href="#/"
@@ -128,6 +245,24 @@ exports[`test Users route 1`] = `
       style={Object {}}>
       Users
     </a>
+    <span
+      style={
+        Object {
+          "margin": "0 5px",
+        }
+      }>
+      |
+    </span>
+    <a
+      href="#/products"
+      onClick={[Function]}
+      style={Object {}}>
+      Products
+    </a>
+    <a
+      href="/products">
+      Products (direct linkz)
+    </a>
   </header>
   <div
     className="app-content">
@@ -143,10 +278,49 @@ exports[`test Users route 1`] = `
       <div>
         Counter Component:
       </div>
-      <div>
+      <div
+        data-radium={true}>
         5
         <button
-          onClick={[Function]}>
+          data-radium={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#27AE60",
+              "borderRadius": "3px",
+              "color": "white",
+              "fontFamily": "\'Helvetica Neue\', sans-serif",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }>
+          +
+        </button>
+      </div>
+      <div
+        data-radium={true}>
+        5
+        <button
+          data-radium={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#0074D9",
+              "borderRadius": "3px",
+              "color": "white",
+              "fontFamily": "\'Helvetica Neue\', sans-serif",
+              "padding": "5px",
+              "position": "relative",
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }>
           +
         </button>
       </div>

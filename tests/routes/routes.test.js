@@ -5,9 +5,10 @@ import { configureStore } from '../../app/store'
 import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore, push } from 'react-router-redux'
 import routes from '../../app/routes'
+import { IntlProvider } from 'react-intl'
 
 test('Index route', () => {
-	// navigate to users page
+	// navigate to uri
 	hashHistory.push('/');
 
 	// setup app
@@ -15,9 +16,11 @@ test('Index route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
-				{routes}
-			</Router>
+			<IntlProvider locale="en">
+				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
+					{routes}
+				</Router>
+			</IntlProvider>
 		</Provider>
 	);
 
@@ -26,7 +29,7 @@ test('Index route', () => {
 });
 
 test('NotFound route', () => {
-	// navigate to users page
+	// navigate to uri
 	hashHistory.push('/some-route-that-doesnt-exist');
 
 	// setup app
@@ -34,9 +37,11 @@ test('NotFound route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
-				{routes}
-			</Router>
+			<IntlProvider locale="en">
+				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
+					{routes}
+				</Router>
+			</IntlProvider>
 		</Provider>
 	);
 
@@ -45,7 +50,7 @@ test('NotFound route', () => {
 });
 
 test('Users route', () => {
-	// navigate to users page
+	// navigate to uri
 	hashHistory.push('/users');
 
 	// setup app
@@ -53,9 +58,11 @@ test('Users route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
-				{routes}
-			</Router>
+			<IntlProvider locale="en">
+				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
+					{routes}
+				</Router>
+			</IntlProvider>
 		</Provider>
 	);
 

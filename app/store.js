@@ -6,6 +6,7 @@ import invariant from 'redux-immutable-state-invariant'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import * as reducers from './reducers'
+import { reducer as api } from 'redux-json-api-without-credentials'
 
 export const configureStore = (initialState) => {
 	// TODO: move logic to external module and refine validation logic
@@ -18,7 +19,7 @@ export const configureStore = (initialState) => {
 		: applyMiddleware(thunk)
 
 	return createStore(
-		combineReducers(Object.assign({ routing: routerReducer }, reducers)),
+		combineReducers({ routing: routerReducer, api: api, ...reducers }),
 		initialState,
 		enhancer
 	)

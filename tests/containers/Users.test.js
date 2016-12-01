@@ -4,12 +4,15 @@ import renderer from 'react-test-renderer'
 import { Users } from '../../app/containers'
 import { configureStore } from '../../app/store'
 import * as Actions from '../../app/actions'
+import { IntlProvider } from 'react-intl'
 
 test('Users page with child components', () => {
 	const store = configureStore({ counter: { count: 5 } })
 	const component = renderer.create(
 		<Provider store={store}>
-			<Users />
+			<IntlProvider locale="en">
+				<Users />
+			</IntlProvider>
 		</Provider>
 	);
 
