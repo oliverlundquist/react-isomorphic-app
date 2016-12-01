@@ -15,6 +15,7 @@ addLocaleData([...en, ...ja]);
 
 
 const preloadedState = window.__PRELOADED_STATE__
+const i18n = window.i18n
 const store = configureStore(preloadedState)
 const history = syncHistoryWithStore(browserHistory, store);
 const rootElement = document.getElementById('app')
@@ -24,7 +25,7 @@ const rootElement = document.getElementById('app')
 render(
 	<RadiumProvider>
 		<Provider store={store}>
-			<IntlProvider locale="ja" messages={{"test1": "Text 1", "test2": "Text 2"}}>
+			<IntlProvider locale={i18n.locale} messages={i18n.messages}>
 				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
 					{routes}
 				</Router>

@@ -1,7 +1,10 @@
 import { addLocaleData } from 'react-intl'
-import en from 'react-intl/locale-data/en';
-import ja from 'react-intl/locale-data/ja';
+import en from 'react-intl/locale-data/en'
+import ja from 'react-intl/locale-data/ja'
+import * as messages from '../lang'
+
 addLocaleData([...en, ...ja]);
 
-// this constant is used in the LocaleMiddleware
 export const locales = ['en', 'ja']
+export const localeIsValid = locale => locales.indexOf(locale) !== -1
+export const getMessages = locale => messages[locale] || {}

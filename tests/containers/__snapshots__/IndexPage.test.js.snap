@@ -1,7 +1,7 @@
 exports[`test Index page should show welcome text 1`] = `
 <div>
   <span>
-    test1
+    hello
   </span>
   <h1>
     Index Page

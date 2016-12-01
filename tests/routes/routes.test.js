@@ -6,6 +6,7 @@ import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore, push } from 'react-router-redux'
 import routes from '../../app/routes'
 import { IntlProvider } from 'react-intl'
+import { locales, getMessages } from '../../bootstrap/i18n'
 
 test('Index route', () => {
 	// navigate to uri
@@ -16,7 +17,7 @@ test('Index route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<IntlProvider locale="en">
+			<IntlProvider locale={locales[0]} messages={getMessages(locales[0])}>
 				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
 					{routes}
 				</Router>
@@ -37,7 +38,7 @@ test('NotFound route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<IntlProvider locale="en">
+			<IntlProvider locale={locales[0]} messages={getMessages(locales[0])}>
 				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
 					{routes}
 				</Router>
@@ -58,7 +59,7 @@ test('Users route', () => {
 	const history = syncHistoryWithStore(hashHistory, store)
 	const component = renderer.create(
 		<Provider store={store}>
-			<IntlProvider locale="en">
+			<IntlProvider locale={locales[0]} messages={getMessages(locales[0])}>
 				<Router history={history} onUpdate={() => window.scrollTo(0, 0)} >
 					{routes}
 				</Router>

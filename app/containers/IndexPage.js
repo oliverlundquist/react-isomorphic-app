@@ -16,7 +16,7 @@ class IndexPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<FormattedMessage id="test1" />
+				<FormattedMessage id="IndexPage.greeting" />
 				<h1>Index Page</h1>
 				<a href={this.props.authUrl}><img style={this.getStyles('loginBtn')} src="https://s3-eu-west-1.amazonaws.com/mystore-api-auth-app/assets/mystore-api-login-btn.jpg" alt="Login with Mystore.no" /></a>
 			</div>

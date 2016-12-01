@@ -53,7 +53,7 @@ exports[`test Index route 1`] = `
     className="app-content">
     <div>
       <span>
-        test1
+        hello
       </span>
       <h1>
         Index Page
@@ -140,63 +140,24 @@ exports[`test NotFound route 1`] = `
   <div
     className="app-content">
     <div>
+      <span>
+        hello
+      </span>
       <h1>
-        Users Page
+        Index Page
       </h1>
-      <div>
-        State inside the Users Container: 
-        5
-      </div>
-      <hr />
-      <div>
-        Counter Component:
-      </div>
-      <div
-        data-radium={true}>
-        5
-        <button
-          data-radium={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+      <a
+        href="http://passport.dev:8000/oauth/authorize?client_id=7&redirect_uri=http://consumer.dev:8010/callback&response_type=code&scope=read:products read:categories">
+        <img
+          alt="Login with Mystore.no"
+          src="https://s3-eu-west-1.amazonaws.com/mystore-api-auth-app/assets/mystore-api-login-btn.jpg"
           style={
             Object {
-              "backgroundColor": "#27AE60",
-              "borderRadius": "3px",
-              "color": "white",
-              "fontFamily": "\'Helvetica Neue\', sans-serif",
-              "padding": "5px",
-              "position": "relative",
-              "textAlign": "center",
-              "width": "100%",
+              "height": "auto",
+              "width": 360,
             }
-          }>
-          +
-        </button>
-      </div>
-      <div
-        data-radium={true}>
-        5
-        <button
-          data-radium={true}
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#0074D9",
-              "borderRadius": "3px",
-              "color": "white",
-              "fontFamily": "\'Helvetica Neue\', sans-serif",
-              "padding": "5px",
-              "position": "relative",
-              "textAlign": "center",
-              "width": "100%",
-            }
-          }>
-          +
-        </button>
-      </div>
+          } />
+      </a>
     </div>
   </div>
   <footer

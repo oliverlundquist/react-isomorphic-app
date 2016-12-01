@@ -50,7 +50,7 @@ exports[`test Layout with childview 1`] = `
     className="app-content">
     <div>
       <span>
-        test1
+        hello
       </span>
       <h1>
         Index Page

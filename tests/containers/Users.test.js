@@ -5,12 +5,13 @@ import { Users } from '../../app/containers'
 import { configureStore } from '../../app/store'
 import * as Actions from '../../app/actions'
 import { IntlProvider } from 'react-intl'
+import { locales, getMessages } from '../../bootstrap/i18n'
 
 test('Users page with child components', () => {
 	const store = configureStore({ counter: { count: 5 } })
 	const component = renderer.create(
 		<Provider store={store}>
-			<IntlProvider locale="en">
+			<IntlProvider locale={locales[0]} messages={getMessages(locales[0])}>
 				<Users />
 			</IntlProvider>
 		</Provider>

@@ -9,7 +9,7 @@ import routes from '../app/routes'
 import { configureStore } from '../app/store'
 import { Provider } from 'react-redux'
 import { RadiumProvider } from '../app/providers'
-import { IntlProvider, addLocaleData } from 'react-intl'
+import { IntlProvider } from 'react-intl'
 import axios from 'axios'
 
 // /////// //
@@ -18,17 +18,17 @@ import axios from 'axios'
 // import en from 'react-intl/locale-data/en';
 // import ja from 'react-intl/locale-data/ja';
 // addLocaleData([...en, ...ja]);
-const locales = ['en', 'ja']
+// const locales = ['en', 'ja']
 
 // ///////// //
 // EXPRESSJS //
 // ///////// //
-const qs = require('qs');
-const i18n = require('./i18n')
+const qs = require('qs')
+// const i18n = require('./i18n')
 const express = require('express')
 const session = require('express-session')
 const request = require('request')
-const RedisStore = require('connect-redis')(session);
+const RedisStore = require('connect-redis')(session)
 const app = express()
 
 // ////////// //
@@ -89,6 +89,7 @@ app.get('/callback', function (req, res, next) {
 // /////////// //
 app.use(handleRender)
 function handleRender(req, res) {
+	const i18n = req.i18n
 	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
 		// error response
 		if (error !== null) {
@@ -110,14 +111,14 @@ function handleRender(req, res) {
 			const html = renderToString(
 				<RadiumProvider radiumConfig={{ userAgent: req.headers['user-agent'] }}>
 					<Provider store={store}>
-						<IntlProvider locale="ja" messages={{"test1": "Text 1", "test2": "Text 2"}}>
+						<IntlProvider locale={i18n.locale} messages={i18n.messages}>
 								<RouterContext {...renderProps} />
 						</IntlProvider>
 					</Provider>
 				</RadiumProvider>
 			)
 			const finalState = store.getState()
-			res.status(200).send(renderFullPage(html, finalState))
+			res.status(200).send(renderFullPage(html, finalState, i18n))
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -125,7 +126,7 @@ function handleRender(req, res) {
 	})
 }
 
-function renderFullPage(html, preloadedState) {
+function renderFullPage(html, preloadedState, i18n) {
 	return `<!doctype html>
 <html>
 	<head>
@@ -134,9 +135,7 @@ function renderFullPage(html, preloadedState) {
 	<body>
 		<div id="app">${html}</div>
 		<script>
-			window.i18n = 'somemessages'
-		</script>
-		<script>
+			window.i18n = ${JSON.stringify(i18n).replace(/</g, '\\x3c')}
 			window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
 		</script>
 		<script src="/scripts/bundle.js"></script>
