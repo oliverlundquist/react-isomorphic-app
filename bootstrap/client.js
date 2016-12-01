@@ -7,12 +7,8 @@ import { Router, browserHistory } from 'react-router'
 import { configureStore } from '../app/store'
 import routes from '../app/routes'
 import { RadiumProvider } from '../app/providers'
-import { IntlProvider, addLocaleData } from 'react-intl'
-
-import en from 'react-intl/locale-data/en';
-import ja from 'react-intl/locale-data/ja';
-addLocaleData([...en, ...ja]);
-
+import { IntlProvider } from 'react-intl'
+import './i18n'
 
 const preloadedState = window.__PRELOADED_STATE__
 const i18n = window.i18n

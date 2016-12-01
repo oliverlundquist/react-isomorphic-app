@@ -12,14 +12,6 @@ import { RadiumProvider } from '../app/providers'
 import { IntlProvider } from 'react-intl'
 import axios from 'axios'
 
-// /////// //
-// LOCALES //
-// /////// //
-// import en from 'react-intl/locale-data/en';
-// import ja from 'react-intl/locale-data/ja';
-// addLocaleData([...en, ...ja]);
-// const locales = ['en', 'ja']
-
 // ///////// //
 // EXPRESSJS //
 // ///////// //
@@ -90,6 +82,8 @@ app.get('/callback', function (req, res, next) {
 app.use(handleRender)
 function handleRender(req, res) {
 	const i18n = req.i18n
+	const path = req.url.replace(i18n.locale, '').replace(/\//g, '')
+
 	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
 		// error response
 		if (error !== null) {
@@ -100,12 +94,18 @@ function handleRender(req, res) {
 			return res.redirect(302, redirectLocation.pathname + redirectLocation.search)
 		}
 		// normal response
+		loadResources()
+		// loadResources(path)
 		axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUxNWQ5MTJhNmMzY2IyZDcwOWFlZDM5ZjUwNTE0YWFlNjhhNTM5ODhhNGVmMTEwOWJlNDI0ZWIwYWIwMzA0M2JhM2M4NWU3NTM4MGFhYTcxIn0.eyJhdWQiOiIyIiwianRpIjoiZTE1ZDkxMmE2YzNjYjJkNzA5YWVkMzlmNTA1MTRhYWU2OGE1Mzk4OGE0ZWYxMTA5YmU0MjRlYjBhYjAzMDQzYmEzYzg1ZTc1MzgwYWFhNzEiLCJpYXQiOjE0NzU3NTE1ODcsIm5iZiI6MTQ3NTc1MTU4NywiZXhwIjo0NjMxNDI4Nzg3LCJzdWIiOiIyIiwic2NvcGVzIjpbIioiXSwibm9fbXlzdG9yZV9ob3N0cyI6WyJjaGlwcyJdfQ.ep7f7aJgfdwnmBQMXrTHf-aMMYjx3pS4wCKOJ1tp42A9HehJTXXWq7vExxoziy5FmMvqOlvh9UdxUkpooz76M8VPxaFzkp3RRXM938AP_zKgGAv9wliQLAIGNE1tx1hlbaRzf6q6lzbWKbi-rb45GOc8C7CrR4rzpuJu8HbJk0ezovpy210lTuEl5aIWMHGqpNSLyjuN6tYHF3vAnKaj8Z9936sWy4KfHfTuWAqBDJwtTyt8WuwtlxA0fRGBePe8bSy7KaTskP2FmysAizbn0Tga0bADmvtlrarcrzMu--5ZxEGUad8D5nCI-FVNiLXPvei5X8TSxXl1HfRVob8PVlcbmB7iA5ogNfl3czGh_EFoO3w_0AFQ1sX6aYxqfoKKoqIsd0kR04kMFA9yE0TlOyDlUt6xpRmjAnXFuX2Hk5SUZ10HdfEC5Yo8tFobzOi1PjQktGlEPrQBMojUJk05otYFJ8YqSjt9Z0xOQhnnPyN4ZiD4XhV5RVBt7kTIX2QSG6Z0BzDcgOsSS0gCrcb3SMciE5VvHSc7N2TLVXM20fCyYRrtXLxpejuois_bKkKOLQ30Ch7eC-_t0QdSEC-XfIzVTbYdx_FWymwRmz_ASthuy2Zr_KQQSNI4XY7gu4gtMUQBYCG48D5Zp8Qh-c37r56EM_Sa9fnqLVZmfWrsJlo';
 		axios.defaults.headers.common['Accept'] = 'application/vnd.api+json';
 		axios.defaults.headers.common['Content-Type'] = 'application/vnd.api+json';
 		axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization';
-		axios.get('https://api.mystore.no/shops/chips/products')
-		.then(function (response) {
+		axios.all([
+			axios.get('https://api.mystore.no/shops/chips/products'),
+			axios.get('https://api.mystore.no/shops/chips/categories')
+		])
+		.then(axios.spread(function (response) {
+			console.log(arguments);
 			const initialState = { counter: { count: 5 }, session: req.session, api: { products: response.data } }
 			const store = configureStore(initialState)
 			const html = renderToString(
@@ -118,15 +118,15 @@ function handleRender(req, res) {
 				</RadiumProvider>
 			)
 			const finalState = store.getState()
-			res.status(200).send(renderFullPage(html, finalState, i18n))
-		})
+			res.status(200).send(renderFullPage(html, i18n, finalState))
+		}))
 		.catch(function (error) {
 			console.log(error);
 		});
 	})
 }
 
-function renderFullPage(html, preloadedState, i18n) {
+function renderFullPage(html, i18n, preloadedState) {
 	return `<!doctype html>
 <html>
 	<head>

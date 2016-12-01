@@ -139,25 +139,22 @@ exports[`test NotFound route 1`] = `
   </header>
   <div
     className="app-content">
-    <div>
-      <span>
-        hello
-      </span>
+    <div
+      className="not-found">
       <h1>
-        Index Page
+        404
       </h1>
-      <a
-        href="http://passport.dev:8000/oauth/authorize?client_id=7&redirect_uri=http://consumer.dev:8010/callback&response_type=code&scope=read:products read:categories">
-        <img
-          alt="Login with Mystore.no"
-          src="https://s3-eu-west-1.amazonaws.com/mystore-api-auth-app/assets/mystore-api-login-btn.jpg"
-          style={
-            Object {
-              "height": "auto",
-              "width": 360,
-            }
-          } />
-      </a>
+      <h2>
+        Page not found!
+      </h2>
+      <p>
+        <a
+          href="#/"
+          onClick={[Function]}
+          style={Object {}}>
+          Go back to the main page
+        </a>
+      </p>
     </div>
   </div>
   <footer

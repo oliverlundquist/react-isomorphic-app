@@ -17,6 +17,7 @@ class IndexPage extends React.Component {
 		return (
 			<div>
 				<FormattedMessage id="IndexPage.greeting" />
+				<FormattedNumber value="100000000" />
 				<h1>Index Page</h1>
 				<a href={this.props.authUrl}><img style={this.getStyles('loginBtn')} src="https://s3-eu-west-1.amazonaws.com/mystore-api-auth-app/assets/mystore-api-login-btn.jpg" alt="Login with Mystore.no" /></a>
 			</div>
